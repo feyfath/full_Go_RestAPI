@@ -17,29 +17,6 @@ import (
 var db *sql.DB
 var err error
 
-//type User struct {
-//	ID uint64 `json:"id"`
-//	Useremail string `json:"useremail"`
-//	Username string `json:"username"`
-//	Password string `json:"password"`
-//	AccountType string `json:"accounttype"`
-//}
-
-// Cours str ...
-//type Cours struct {
-//	ID    int
-//	Title string
-//	Desc  string
-//	Text  string
-//}
-
-// Pictures str ...
-//type Pictures struct {
-//	ID    int
-//	Title string
-//	URL   string
-//}
-
 //checkErr
 func checkErr(err error) {
 	if err != nil {
@@ -226,43 +203,6 @@ func deleteUser(w http.ResponseWriter, r *http.Request) {
 	fmt.Print("delete user with id:", id)
 	_, _ = db.Exec("delete from users where id = ?", id)
 }
-
-//func cours(w http.ResponseWriter, r *http.Request) {
-//	// w.Header().Set("Content-Type", "application/json")
-//	w.Header().Set("Access-Control-Allow-Origin", "*")
-//	var myCour []*Cours
-//
-//	coursRows, err := db.Query("SELECT * FROM cours")
-//	checkErr(err)
-//	defer coursRows.Close()
-//
-//	for coursRows.Next() { //  stops when there are no more rows
-//		temp := new(Cours)                                                   // initialize a new instance
-//		err := coursRows.Scan(&temp.ID, &temp.Title, &temp.Desc, &temp.Text) // scan contents of the current row into the instance
-//		checkErr(err)
-//		myCour = append(myCour, temp) // add each instance to the slice
-//	}
-//	if err := json.NewEncoder(w).Encode(myCour); err != nil {
-//		log.Println(err)
-//	}
-//}
-//func pictures(w http.ResponseWriter, r *http.Request) {
-//	// w.Header().Set("Content-Type", "application/json")
-//	w.Header().Set("Access-Control-Allow-Origin", "*")
-//	var myPicture []*Pictures
-//	coursRows, err := db.Query("SELECT * FROM pictures")
-//	checkErr(err)
-//	defer coursRows.Close()
-//	for coursRows.Next() { // dont worry it stops when there are no more rows
-//		c := new(Pictures)                             // initialize a new instance
-//		err := coursRows.Scan(&c.ID, &c.Title, &c.URL) // scan contents of the current row into the instance
-//		checkErr(err)
-//		myPicture = append(myPicture, c) // add each instance to the slice
-//	}
-//	if err := json.NewEncoder(w).Encode(myPicture); err != nil {
-//		log.Println(err)
-//	}
-//}
 
 func handler() {
 	fmt.Printf("hello handler!")
